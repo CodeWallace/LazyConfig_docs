@@ -1,0 +1,1517 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="商业级 Excel → JSON → Config 自动化配置工具，专为 Unity 游戏开发打造">
+      
+      
+      
+        <link rel="canonical" href="https://lazyconfig.github.io/runtime-api/">
+      
+      
+        <link rel="prev" href="../data-types/">
+      
+      
+        <link rel="next" href="../extension/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>运行时 API - LazyConfig</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#api" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="LazyConfig" class="md-header__button md-logo" aria-label="LazyConfig" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LazyConfig
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              运行时 API
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="LazyConfig" class="md-nav__button md-logo" aria-label="LazyConfig" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    LazyConfig
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    使用指南
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    使用指南
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    快速开始
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../excel-format/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Excel 格式规范
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    核心功能
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    核心功能
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schema 语法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据类型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    运行时 API
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    运行时 API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📦 配置管理类
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📦 配置管理类">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        访问单例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        查询方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        属性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 跨表关联访问
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔗 跨表关联访问">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚡ 加载模式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚡ 加载模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        同步加载
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        异步加载
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回调加载
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        并行加载
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔄 异步/同步混合模式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 异步/同步混合模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        加载状态流转
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configsystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🗂️ ConfigSystem 全局管理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🗂️ ConfigSystem 全局管理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        注册配置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        初始化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        状态检查
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        清理
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔐 配置加密
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔐 配置加密">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        加密方式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        配置加密器
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📁 配置加载路径
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📁 配置加载路径">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        自定义加载路径
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iconfigloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IConfigLoader 接口
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ 注意事项
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 最佳实践
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 最佳实践">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        启动时预加载
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        按需加载
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        缓存常用配置
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    高级扩展
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    高级扩展
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    扩展机制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    使用示例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deploy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    部署发布
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="api">运行时 API<a class="headerlink" href="#api" title="Permanent link">&para;</a></h1>
+<p>LazyConfig 提供了丰富的运行时 API，支持多种加载模式和配置访问方式。</p>
+<h2 id="_1">📦 配置管理类<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>每个配置表都会自动生成对应的管理类，命名格式为 <code>{TableName}Configs</code>。</p>
+<h3 id="_2">访问单例<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">var</span><span class="w"> </span><span class="n">skillConfigs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SkillConfigs</span><span class="p">.</span><span class="n">Instance</span><span class="p">;</span>
+</code></pre></div>
+
+<p>单例访问会自动触发初始化和加载，如果配置尚未加载会同步加载。</p>
+<h3 id="_3">查询方法<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Get(int id)</code></td>
+<td>按 ID 获取配置（O(1)）</td>
+<td><code>skillConfigs.Get(1)</code></td>
+</tr>
+<tr>
+<td><code>Find(Predicate&lt;T&gt; match)</code></td>
+<td>按条件查找第一条</td>
+<td><code>skillConfigs.Find(s =&gt; s.name.Contains("火"))</code></td>
+</tr>
+<tr>
+<td><code>FindAll(Predicate&lt;T&gt; match)</code></td>
+<td>按条件查找所有</td>
+<td><code>skillConfigs.FindAll(s =&gt; s.manaCost &gt; 30)</code></td>
+</tr>
+<tr>
+<td><code>Contains(int id)</code></td>
+<td>检查是否包含指定 ID</td>
+<td><code>skillConfigs.Contains(1)</code></td>
+</tr>
+<tr>
+<td><code>GetFirst()</code></td>
+<td>获取第一条配置</td>
+<td><code>skillConfigs.GetFirst()</code></td>
+</tr>
+<tr>
+<td><code>GetLast()</code></td>
+<td>获取最后一条配置</td>
+<td><code>skillConfigs.GetLast()</code></td>
+</tr>
+<tr>
+<td><code>GetRange(int startIndex, int count)</code></td>
+<td>获取指定范围的配置</td>
+<td><code>skillConfigs.GetRange(0, 5)</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">属性<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Items</code></td>
+<td>获取所有配置（只读集合）</td>
+<td><code>IReadOnlyCollection&lt;T&gt;</code></td>
+</tr>
+<tr>
+<td><code>IsLoaded</code></td>
+<td>是否已加载完成</td>
+<td><code>bool</code></td>
+</tr>
+<tr>
+<td><code>IsLoading</code></td>
+<td>是否正在加载中</td>
+<td><code>bool</code></td>
+</tr>
+<tr>
+<td><code>Count</code></td>
+<td>配置数量</td>
+<td><code>int</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">示例<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">using</span><span class="w"> </span><span class="nn">Game.Config</span><span class="p">;</span>
+
+<span class="c1">// 按 ID 查询</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">skill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SkillConfigs</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">Get</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="n">skill</span><span class="p">.</span><span class="n">name</span><span class="p">);</span>
+
+<span class="c1">// 条件查找</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">fireSkills</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SkillConfigs</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">FindAll</span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">name</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&quot;火&quot;</span><span class="p">));</span>
+
+<span class="c1">// 遍历所有配置</span>
+<span class="k">foreach</span><span class="w"> </span><span class="p">(</span><span class="kt">var</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">SkillConfigs</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">Items</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">name</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// 检查加载状态</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">SkillConfigs</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">IsLoaded</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&quot;配置已加载&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="_6">🔗 跨表关联访问<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>使用 <code>#link</code> Schema 标记的字段会自动生成 <code>GetXxx()</code> 访问方法。</p>
+<h3 id="_7">示例<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">var</span><span class="w"> </span><span class="n">skill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SkillConfigs</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">Get</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="c1">// 自动生成的关联访问方法</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">damage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">skill</span><span class="p">.</span><span class="n">GetDamage</span><span class="p">();</span><span class="w">      </span><span class="c1">// 获取伤害类型配置</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">skill</span><span class="p">.</span><span class="n">GetEffect</span><span class="p">();</span><span class="w">      </span><span class="c1">// 获取技能效果配置</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">damage</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="n">damage</span><span class="p">.</span><span class="n">name</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="_8">⚡ 加载模式<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<h3 id="_9">同步加载<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// 同步初始化所有配置（会阻塞主线程）</span>
+<span class="n">ConfigSystem</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">Initialize</span><span class="p">();</span>
+
+<span class="c1">// 同步加载单个配置</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">skillConfigs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SkillConfigs</span><span class="p">.</span><span class="n">Instance</span><span class="p">;</span><span class="w">  </span><span class="c1">// 访问时自动同步加载</span>
+</code></pre></div>
+
+<h3 id="_10">异步加载<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// 异步初始化所有配置</span>
+<span class="k">await</span><span class="w"> </span><span class="n">ConfigSystem</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">InitializeAsync</span><span class="p">();</span>
+
+<span class="c1">// 异步加载单个配置</span>
+<span class="k">await</span><span class="w"> </span><span class="n">SkillConfigs</span><span class="p">.</span><span class="n">LoadInstanceAsync</span><span class="p">();</span>
+</code></pre></div>
+
+<h3 id="_11">回调加载<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="n">ConfigSystem</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">InitializeAsync</span><span class="p">((</span><span class="n">success</span><span class="p">,</span><span class="w"> </span><span class="n">errors</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">success</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&quot;加载成功&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">foreach</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">errors</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Debug</span><span class="p">.</span><span class="n">LogError</span><span class="p">(</span><span class="n">error</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<h3 id="_12">并行加载<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// 并行异步加载所有配置（最快）</span>
+<span class="k">await</span><span class="w"> </span><span class="n">ConfigSystem</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">InitializeAsyncParallel</span><span class="p">();</span>
+</code></pre></div>
+
+<h2 id="_13">🔄 异步/同步混合模式<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<p>LazyConfig 支持异步预加载和同步访问的混合模式：</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// 启动时异步预加载（不阻塞）</span>
+<span class="n">ConfigSystem</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">InitializeAsync</span><span class="p">();</span>
+
+<span class="c1">// 直接访问时，如果异步未完成，会自动掐断并同步加载</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">skill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SkillConfigs</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">Get</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w">  </span><span class="c1">// 自动处理加载状态</span>
+</code></pre></div>
+
+<h3 id="_14">加载状态流转<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>未加载 → 异步加载中 → 已加载
+           ↓
+      同步访问触发
+           ↓
+      同步加载完成 → 已加载
+</code></pre></div>
+
+<h2 id="configsystem">🗂️ ConfigSystem 全局管理<a class="headerlink" href="#configsystem" title="Permanent link">&para;</a></h2>
+<p><code>ConfigSystem</code> 提供全局配置管理功能。</p>
+<h3 id="_15">注册配置<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// 手动注册配置（通常由生成的代码自动完成）</span>
+<span class="n">ConfigSystem</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">Register</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">SkillConfigs</span><span class="p">());</span>
+</code></pre></div>
+
+<h3 id="_16">初始化<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// 同步初始化</span>
+<span class="n">ConfigSystem</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">Initialize</span><span class="p">();</span>
+
+<span class="c1">// 异步初始化（await）</span>
+<span class="k">await</span><span class="w"> </span><span class="n">ConfigSystem</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">InitializeAsync</span><span class="p">();</span>
+
+<span class="c1">// 异步初始化（回调）</span>
+<span class="n">ConfigSystem</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">InitializeAsync</span><span class="p">((</span><span class="n">success</span><span class="p">,</span><span class="w"> </span><span class="n">errors</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">});</span>
+
+<span class="c1">// 并行异步初始化</span>
+<span class="k">await</span><span class="w"> </span><span class="n">ConfigSystem</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">InitializeAsyncParallel</span><span class="p">();</span>
+</code></pre></div>
+
+<h3 id="_17">状态检查<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// 是否已初始化</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">isInitialized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ConfigSystem</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">isInitialized</span><span class="p">;</span>
+
+<span class="c1">// 是否正在初始化</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">isInitializing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ConfigSystem</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">isInitializing</span><span class="p">;</span>
+
+<span class="c1">// 是否已注册指定类型</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">isRegistered</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ConfigSystem</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">IsRegistered</span><span class="o">&lt;</span><span class="n">SkillConfigs</span><span class="o">&gt;</span><span class="p">();</span>
+
+<span class="c1">// 获取已注册配置数量</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ConfigSystem</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">RegisteredCount</span><span class="p">;</span>
+</code></pre></div>
+
+<h3 id="_18">清理<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// 注销指定类型的配置</span>
+<span class="n">ConfigSystem</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">Unregister</span><span class="o">&lt;</span><span class="n">SkillConfigs</span><span class="o">&gt;</span><span class="p">();</span>
+
+<span class="c1">// 释放所有资源</span>
+<span class="n">ConfigSystem</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">Dispose</span><span class="p">();</span>
+</code></pre></div>
+
+<h2 id="_19">🔐 配置加密<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h2>
+<p>运行时自动识别加密方式并解密，无需额外配置。</p>
+<h3 id="_20">加密方式<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>加密方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>None</strong></td>
+<td>不加密，明文存储</td>
+</tr>
+<tr>
+<td><strong>XOR</strong></td>
+<td>简单异或加密</td>
+</tr>
+<tr>
+<td><strong>MD5</strong></td>
+<td>MD5 哈希密钥加密</td>
+</tr>
+<tr>
+<td><strong>Custom</strong></td>
+<td>自定义加密器（内置 AES 示例）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_21">配置加密器<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
+<p>在 <code>RuntimeConfig.asset</code> 中设置加密配置：</p>
+<ol>
+<li>设置 <code>Encryption Mode</code>（加密模式）</li>
+<li>设置 <code>Encryption Key</code>（加密密钥）</li>
+<li>自定义模式需创建 <code>RuntimeEncryptorBase</code> 派生的 ScriptableObject</li>
+</ol>
+<h2 id="_22">📁 配置加载路径<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h2>
+<p>配置文件默认放在 <code>Resources/Configs/</code> 目录下，运行时通过 <code>Resources.Load</code> 加载。</p>
+<h3 id="_23">自定义加载路径<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// 在生成的配置管理类中设置（通常不需要手动修改）</span>
+<span class="n">SkillConfigs</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">Path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Configs/Skill&quot;</span><span class="p">;</span>
+</code></pre></div>
+
+<h3 id="iconfigloader">IConfigLoader 接口<a class="headerlink" href="#iconfigloader" title="Permanent link">&para;</a></h3>
+<p>通过实现 <code>IConfigLoader</code> 接口可以自定义配置加载方式：</p>
+<div class="codehilite"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">interface</span><span class="w"> </span><span class="n">IConfigLoader</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nf">LoadText</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="n">path</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">byte</span><span class="p">[]</span><span class="w"> </span><span class="nf">LoadBytes</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="n">path</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="_24">⚠️ 注意事项<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>线程安全</strong>：配置访问不是线程安全的，建议在主线程访问</li>
+<li><strong>内存管理</strong>：配置数据会常驻内存，适合游戏运行时使用</li>
+<li><strong>热更新</strong>：不支持热更新，修改配置需要重新导出和打包</li>
+<li><strong>ID 唯一性</strong>：每张表的 ID 必须唯一，否则会覆盖</li>
+<li><strong>空值检查</strong>：<code>Get(id)</code> 可能返回 null，建议进行空值检查</li>
+<li><strong>异步加载</strong>：异步加载完成前访问会自动转为同步加载</li>
+</ol>
+<h2 id="_25">🎯 最佳实践<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h2>
+<h3 id="_26">启动时预加载<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">GameBootstrapper</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Start</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 显示加载界面</span>
+<span class="w">        </span><span class="n">ShowLoadingScreen</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// 并行异步加载所有配置</span>
+<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="n">ConfigSystem</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">InitializeAsyncParallel</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// 隐藏加载界面，进入游戏</span>
+<span class="w">        </span><span class="n">HideLoadingScreen</span><span class="p">();</span>
+<span class="w">        </span><span class="n">EnterGame</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="_27">按需加载<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">SkillManager</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Awake</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 预加载技能配置</span>
+<span class="w">        </span><span class="n">SkillConfigs</span><span class="p">.</span><span class="n">LoadInstanceAsync</span><span class="p">().</span><span class="n">ContinueWith</span><span class="p">(</span><span class="n">task</span><span class="w"> </span><span class="o">=&gt;</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">task</span><span class="p">.</span><span class="n">Result</span><span class="p">)</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&quot;技能配置加载完成&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">SkillConfig</span><span class="w"> </span><span class="nf">GetSkill</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 访问时如果未加载会自动同步加载</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">SkillConfigs</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">Get</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="_28">缓存常用配置<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">BattleSystem</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="n">Dictionary</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">SkillConfig</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_skillCache</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">InitializeCache</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">m_skillCache</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Dictionary</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">SkillConfig</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">        </span><span class="k">foreach</span><span class="w"> </span><span class="p">(</span><span class="kt">var</span><span class="w"> </span><span class="n">skill</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">SkillConfigs</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">Items</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">m_skillCache</span><span class="p">[</span><span class="n">skill</span><span class="p">.</span><span class="n">id</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">skill</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">SkillConfig</span><span class="w"> </span><span class="nf">GetSkill</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_skillCache</span><span class="p">.</span><span class="n">TryGetValue</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">var</span><span class="w"> </span><span class="n">skill</span><span class="p">))</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">skill</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">null</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sidebar", "navigation.expand", "navigation.sections", "navigation.top", "toc.integrate", "search.suggest", "search.highlight", "navigation.indexes"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
