@@ -48,14 +48,6 @@ LazyConfig 支持丰富的数据类型，包括基础类型、Unity 类型、集
 | `List<string>` | `List<string>` | 字符串列表 |
 | `List<Vector3>` | `List<Vector3>` | 三维向量列表 |
 
-### 字典类型
-
-| 类型 | Excel 写法 | 说明 |
-|------|------------|------|
-| `Dictionary<int,string>` | `Dictionary<int,string>` | 整数键字符串值字典 |
-| `Dictionary<string,float>` | `Dictionary<string,float>` | 字符串键浮点数值字典 |
-| `SerializableDictionary<K,V>` | `SerializableDictionary<K,V>` | 可序列化字典（Unity Inspector 可编辑） |
-
 ### 枚举类型
 
 使用 `#enum` Schema 标记声明：
@@ -103,15 +95,6 @@ LazyConfig 支持丰富的数据类型，包括基础类型、Unity 类型、集
 | ID | 名称 | 出生位置 | 头发颜色 | 旋转角度 |
 | 1 | 战士 | (10.0, 0.0, 5.0) | (1.0, 0.5, 0.0, 1.0) | (0.0, 0.0, 0.0, 1.0) |
 | 2 | 法师 | (20.0, 0.0, 8.0) | (0.0, 0.5, 1.0, 1.0) | (0.0, 90.0, 0.0, 0.707) |
-
-### 字典类型示例
-
-| id | name | attributes |
-|----|------|------------|
-| int | string | Dictionary\<string,float> |
-| ID | 名称 | 属性字典 |
-| 1 | 战士 | {HP:1000,ATK:100,DEF:50} |
-| 2 | 法师 | {HP:500,ATK:200,DEF:20} |
 
 ## 🔍 类型转换规则
 
@@ -206,7 +189,6 @@ public class SkillEffectParser : CustomTypeParserBase
 3. **空值处理**：空单元格会被解析为该类型的默认值
 4. **精度问题**：浮点数可能存在精度损失，建议使用适当的小数位数
 5. **数组长度**：建议保持数组长度一致，便于代码处理
-6. **字典键类型**：字典的键类型建议使用 `int` 或 `string`
 
 ## 📊 类型选择建议
 
@@ -219,5 +201,4 @@ public class SkillEffectParser : CustomTypeParserBase
 | 颜色 | `Color` | RGBA 四通道 |
 | 多个 ID | `int[]` | 简单数组 |
 | 动态数量 | `List<T>` | 可增删 |
-| 键值对 | `Dictionary<K,V>` | 键值映射 |
 | 自定义结构 | 自定义类型 | 灵活扩展 |
