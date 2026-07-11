@@ -247,6 +247,43 @@ public interface IConfigLoader
 }
 ```
 
+## 🔒 数据安全与只读保证
+
+LazyConfig 运行时配置数据是只读的，通过多层机制防止意外修改，确保数据安全。
+
+### 配置类只读属性
+
+自动生成的配置类中，所有字段都是只含 getter 的属性，外部无法直接修改：
+
+```csharp
+public partial class SkillConfig : IConfig
+{
+    public int id => m_id;           // 只读，只有 getter
+    public string name => m_name;    // 只读，只有 getter
+    public float cooldown => m_cooldown;
+}
+```
+
+### 集合只读封装
+
+| API | 返回类型 | 说明 |
+|-----|----------|------|
+| `Items` | `ReadOnlyCollection<T>` | 所有配置的只读包装，外部无法增删改 |
+| `FindAll(match)` | `List<T>` | 返回新集合副本，不影响内部数据 |
+| `GetRange(start, count)` | `List<T>` | 返回新集合副本，不影响内部数据 |
+
+### 内部数据封装
+
+- 内部 `items` 列表和 `lookup` 字典均为 `private`，外部无法直接访问
+- 仅通过 `SetData()` 方法在加载时写入数据
+- 运行时所有查询接口均为只读操作
+
+### 设计意图
+
+1. **防止意外修改**：避免业务代码误改配置数据导致的 Bug
+2. **数据一致性**：配置数据在运行时保持与导出时一致
+3. **调试友好**：数据只读，问题排查时无需担心配置被篡改
+
 ## ⚠️ 注意事项
 
 1. **线程安全**：配置访问不是线程安全的，建议在主线程访问
