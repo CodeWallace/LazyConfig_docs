@@ -369,6 +369,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📑 多 Sheet 支持
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -894,10 +905,12 @@
 <p>支持同步、异步、回调、并行多种加载模式，不卡主线程。</p>
 <h3 id="_9">🔌 灵活扩展<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
 <p>ScriptableObject 式自定义类型解析器、校验器、加密器，扩展简单。</p>
+<h3 id="sheet">📑 多 Sheet 支持<a class="headerlink" href="#sheet" title="Permanent link">&para;</a></h3>
+<p>单个 Excel 文件支持多个工作表，每个 Sheet 自动分别导出为独立的配置表。</p>
 <h2 id="_10">🚀 快速开始<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <ol>
 <li><strong>安装</strong>：Package Manager → Add package from disk → 选择 <code>package.json</code></li>
-<li><strong>打开窗口</strong>：<code>Lazy → Lazy Export Window</code></li>
+<li><strong>打开窗口</strong>：<code>Window → Lazy → Export</code></li>
 <li><strong>准备 Excel</strong>：按规范编写配置表（字段名、类型、描述三行表头）</li>
 <li><strong>导出配置</strong>：点击 Export Selected 生成 JSON + C# 代码</li>
 <li><strong>运行时使用</strong>：<code>var config = SkillConfigs.Instance.Get(id)</code></li>

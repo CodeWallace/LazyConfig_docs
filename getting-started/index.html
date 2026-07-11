@@ -988,8 +988,8 @@
 <li>等待导入完成</li>
 </ol>
 <h3 id="_5">验证安装<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
-<p>安装完成后，在 Unity 顶部菜单中会出现 <strong>Lazy</strong> 菜单：</p>
-<div class="codehilite"><pre><span></span><code>Lazy → Lazy Export Window
+<p>安装完成后，在 Unity 菜单中可以通过以下路径打开配置窗口：</p>
+<div class="codehilite"><pre><span></span><code>Window → Lazy → Export
 </code></pre></div>
 
 <h3 id="_6">下载示例工程<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
@@ -998,7 +998,7 @@
 <p>导入方式：Unity 菜单 → Assets → Import Package → Custom Package → 选择下载的 <code>.unitypackage</code> 文件。</p>
 <h2 id="_7">🚀 第一步：打开配置窗口<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <ol>
-<li>点击菜单 <code>Lazy → Lazy Export Window</code></li>
+<li>点击菜单 <code>Window → Lazy → Export</code></li>
 <li>首次打开时，点击 <strong>Create Configs</strong> 按钮</li>
 <li>系统会自动创建：</li>
 <li><code>EditorConfig.asset</code> — 编辑器配置</li>
@@ -1130,6 +1130,10 @@ Resources/Configs/
 
 <span class="c1">// 按条件查找</span>
 <span class="kt">var</span><span class="w"> </span><span class="n">highDamageSkills</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">skillConfigs</span><span class="p">.</span><span class="n">FindAll</span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">manaCost</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">30</span><span class="p">);</span>
+
+<span class="c1">// 多 Sheet 配置访问（每个 Sheet 生成独立的管理类）</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">sheet1Config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GameDataSheet1Configs</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">Get</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">sheet2Config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GameDataSheet2Configs</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">Get</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 </code></pre></div>
 
 <h3 id="_13">异步加载<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
@@ -1148,9 +1152,9 @@ Resources/Configs/
 
 <h2 id="_14">🎯 常见问题<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
 <h3 id="q-excel">Q: Excel 文件放在哪里？<a class="headerlink" href="#q-excel" title="Permanent link">&para;</a></h3>
-<p>A: 可以放在任意目录，在编辑器窗口中添加目录路径即可。建议放在 <code>Assets/Plugins/LazyConfig/Excel/</code> 目录下。</p>
+<p>A: 可以放在任意目录，在编辑器窗口中添加目录路径即可。建议放在 <code>Assets/LazyConfig/Excel/</code> 目录下。</p>
 <h3 id="q">Q: 生成的代码在哪里？<a class="headerlink" href="#q" title="Permanent link">&para;</a></h3>
-<p>A: 默认生成在 <code>Assets/Plugins/LazyConfig/Runtime/Configs/</code> 目录下。</p>
+<p>A: 默认生成在 <code>Assets/LazyConfig/Runtime/Configs/</code> 目录下。</p>
 <h3 id="q-json">Q: JSON 文件在哪里？<a class="headerlink" href="#q-json" title="Permanent link">&para;</a></h3>
 <p>A: 默认生成在 <code>Assets/Resources/Configs/</code> 目录下，运行时通过 Resources.Load 加载。</p>
 <h3 id="q_1">Q: 如何修改导出路径？<a class="headerlink" href="#q_1" title="Permanent link">&para;</a></h3>

@@ -1333,24 +1333,29 @@
 <tr>
 <th>加密方式</th>
 <th>说明</th>
+<th>版本要求</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>None</strong></td>
 <td>不加密，明文存储</td>
+<td>Free/Pro</td>
 </tr>
 <tr>
 <td><strong>XOR</strong></td>
 <td>简单异或加密</td>
+<td>Free/Pro</td>
 </tr>
 <tr>
 <td><strong>MD5</strong></td>
 <td>MD5 哈希密钥加密</td>
+<td>Pro 专属</td>
 </tr>
 <tr>
 <td><strong>Custom</strong></td>
 <td>自定义加密器（内置 AES 示例）</td>
+<td>Pro 专属</td>
 </tr>
 </tbody>
 </table>
@@ -1360,6 +1365,7 @@
 <li>设置 <code>Encryption Mode</code>（加密模式）</li>
 <li>设置 <code>Encryption Key</code>（加密密钥）</li>
 <li>自定义模式需创建 <code>RuntimeEncryptorBase</code> 派生的 ScriptableObject</li>
+<li>编辑器端需创建 <code>CustomEncryptorBase</code> 派生的加密器</li>
 </ol>
 <h2 id="_22">📁 配置加载路径<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h2>
 <p>配置文件默认放在 <code>Resources/Configs/</code> 目录下，运行时通过 <code>Resources.Load</code> 加载。</p>
