@@ -1498,8 +1498,6 @@
 <h2 id="_29">⚠️ 注意事项<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h2>
 <ol>
 <li><strong>线程安全</strong>：配置访问不是线程安全的，建议在主线程访问</li>
-<li><strong>内存管理</strong>：配置数据会常驻内存，适合游戏运行时使用</li>
-<li><strong>热更新</strong>：不支持热更新，修改配置需要重新导出和打包</li>
 <li><strong>ID 唯一性</strong>：每张表的 ID 必须唯一，否则会覆盖</li>
 <li><strong>空值检查</strong>：<code>Get(id)</code> 可能返回 null，建议进行空值检查</li>
 <li><strong>异步加载</strong>：异步加载完成前访问会自动转为同步加载</li>
