@@ -410,6 +410,16 @@ public class CustomTypeExample : MonoBehaviour
 
 ## 📚 更多示例
 
+### 下载 Unity 示例工程
+
+你可以下载完整的 Unity 示例包，包含所有示例代码和演示场景：
+
+👉 [下载 LazyConfigSamples.unitypackage](https://github.com/CodeWallace/LazyConfig_docs/raw/main/LazyConfigSamples.unitypackage)
+
+导入方式：Unity 菜单 → Assets → Import Package → Custom Package → 选择下载的 `.unitypackage` 文件。
+
+### 示例目录结构
+
 查看项目中的 Samples 目录获取完整的示例代码：
 
 ```

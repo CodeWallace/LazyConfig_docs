@@ -24,6 +24,14 @@
 Lazy → Lazy Export Window
 ```
 
+### 下载示例工程
+
+如果你希望直接体验完整示例，可以下载 Unity 示例包：
+
+👉 [下载 LazyConfigSamples.unitypackage](https://github.com/CodeWallace/LazyConfig_docs/raw/main/LazyConfigSamples.unitypackage)
+
+导入方式：Unity 菜单 → Assets → Import Package → Custom Package → 选择下载的 `.unitypackage` 文件。
+
 ## 🚀 第一步：打开配置窗口
 
 1. 点击菜单 `Lazy → Lazy Export Window`

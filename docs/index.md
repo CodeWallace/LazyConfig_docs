@@ -38,6 +38,8 @@ ScriptableObject 式自定义类型解析器、校验器、加密器，扩展简
 4. **导出配置**：点击 Export Selected 生成 JSON + C# 代码
 5. **运行时使用**：`var config = SkillConfigs.Instance.Get(id)`
 
+> 📦 **下载 Unity 示例工程**：[LazyConfigSamples.unitypackage](https://github.com/CodeWallace/LazyConfig_docs/raw/main/LazyConfigSamples.unitypackage)
+
 ## 📖 文档导航
 
 - [快速开始](getting-started.md) — 安装和基本使用
