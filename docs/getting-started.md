@@ -18,10 +18,10 @@
 
 ### 验证安装
 
-安装完成后，在 Unity 顶部菜单中会出现 **Lazy** 菜单：
+安装完成后，在 Unity 菜单中可以通过以下路径打开配置窗口：
 
 ```
-Lazy → Lazy Export Window
+Window → Lazy → Export
 ```
 
 ### 下载示例工程
@@ -34,7 +34,7 @@ Lazy → Lazy Export Window
 
 ## 🚀 第一步：打开配置窗口
 
-1. 点击菜单 `Lazy → Lazy Export Window`
+1. 点击菜单 `Window → Lazy → Export`
 2. 首次打开时，点击 **Create Configs** 按钮
 3. 系统会自动创建：
    - `EditorConfig.asset` — 编辑器配置
@@ -106,6 +106,10 @@ Debug.Log(damage.name);      // 火焰伤害
 
 // 按条件查找
 var highDamageSkills = skillConfigs.FindAll(s => s.manaCost > 30);
+
+// 多 Sheet 配置访问（每个 Sheet 生成独立的管理类）
+var sheet1Config = GameDataSheet1Configs.Instance.Get(1);
+var sheet2Config = GameDataSheet2Configs.Instance.Get(1);
 ```
 
 ### 异步加载
@@ -128,11 +132,11 @@ SkillConfigs.Instance.LoadAsync((success, errors) =>
 
 ### Q: Excel 文件放在哪里？
 
-A: 可以放在任意目录，在编辑器窗口中添加目录路径即可。建议放在 `Assets/Plugins/LazyConfig/Excel/` 目录下。
+A: 可以放在任意目录，在编辑器窗口中添加目录路径即可。建议放在 `Assets/LazyConfig/Excel/` 目录下。
 
 ### Q: 生成的代码在哪里？
 
-A: 默认生成在 `Assets/Plugins/LazyConfig/Runtime/Configs/` 目录下。
+A: 默认生成在 `Assets/LazyConfig/Runtime/Configs/` 目录下。
 
 ### Q: JSON 文件在哪里？
 

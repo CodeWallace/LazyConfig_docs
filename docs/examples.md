@@ -423,7 +423,7 @@ public class CustomTypeExample : MonoBehaviour
 查看项目中的 Samples 目录获取完整的示例代码：
 
 ```
-Assets/Plugins/LazyConfig/Samples/
+Assets/LazyConfig/Samples/
 ├── Scripts/
 │   ├── UseageExample.cs      # 完整使用示例
 │   └── DemoUIBuilder.cs      # UI 演示

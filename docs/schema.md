@@ -181,7 +181,7 @@ if (skill.classType == Game.ClassType.Warrior)
 | `D:/Projects/Game/Assets/Prefabs/Player.prefab` | 绝对路径，直接检查 |
 | `Assets/Prefabs/Player` | 拼接工程根目录为绝对路径检查 |
 | `Assets/Prefabs/Player.prefab` | 拼接工程根目录为绝对路径检查 |
-| `Resources/Prefabs/Player` | 转换为 `Assets/Resources/Prefabs/Player` 后检查 |
+| `Resources/Prefabs/Player` | 转换为 `Assets/Resources/Prefabs/Player` 后拼接工程根目录检查 |
 | `/Prefabs/Player` | 去掉 `/` 后在所有 Resources 目录下搜索 |
 | `Prefabs/Player` | 在所有 Resources 目录下搜索 |
 | `Player` | 在所有 Resources 目录下搜索 + 尝试所有后缀 |

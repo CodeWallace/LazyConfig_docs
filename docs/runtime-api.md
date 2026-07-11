@@ -208,12 +208,12 @@ ConfigSystem.Instance.Dispose();
 
 ### 加密方式
 
-| 加密方式 | 说明 |
-|----------|------|
-| **None** | 不加密，明文存储 |
-| **XOR** | 简单异或加密 |
-| **MD5** | MD5 哈希密钥加密 |
-| **Custom** | 自定义加密器（内置 AES 示例） |
+| 加密方式 | 说明 | 版本要求 |
+|----------|------|----------|
+| **None** | 不加密，明文存储 | Free/Pro |
+| **XOR** | 简单异或加密 | Free/Pro |
+| **MD5** | MD5 哈希密钥加密 | Pro 专属 |
+| **Custom** | 自定义加密器（内置 AES 示例） | Pro 专属 |
 
 ### 配置加密器
 
@@ -222,6 +222,7 @@ ConfigSystem.Instance.Dispose();
 1. 设置 `Encryption Mode`（加密模式）
 2. 设置 `Encryption Key`（加密密钥）
 3. 自定义模式需创建 `RuntimeEncryptorBase` 派生的 ScriptableObject
+4. 编辑器端需创建 `CustomEncryptorBase` 派生的加密器
 
 ## 📁 配置加载路径
 

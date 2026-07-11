@@ -53,7 +53,7 @@ public class SkillEffectParser : CustomTypeParserBase
 
 ### 注册到 EditorConfig
 
-1. 在 `Assets/Plugins/LazyConfig/Editor/` 目录下创建 `SkillEffectParser.asset`
+1. 在 `Assets/LazyConfig/Editor/` 目录下创建 `SkillEffectParser.asset`
 2. 打开 `EditorConfig.asset`，在 `Custom Type Parsers` 列表中添加该 Asset
 
 ## ✅ 自定义校验器
@@ -95,7 +95,7 @@ public class SkillEffectValidator : CustomValidatorBase
 
 ### 注册到 EditorConfig
 
-1. 在 `Assets/Plugins/LazyConfig/Editor/` 目录下创建 `SkillEffectValidator.asset`
+1. 在 `Assets/LazyConfig/Editor/` 目录下创建 `SkillEffectValidator.asset`
 2. 打开 `EditorConfig.asset`，在 `Custom Validators` 列表中添加该 Asset
 
 ## 🔐 自定义加密器
